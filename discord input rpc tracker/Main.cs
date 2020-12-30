@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace discord_input_rpc_tracker
 {
-    class Program
+    class Index
     {
         static void Main(string[] args)
         {
+
         }
     }
 }
