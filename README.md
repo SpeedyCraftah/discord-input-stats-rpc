@@ -1,2 +1,13 @@
 # discord-input-stats-rpc
-This small module written in python tracks the amount of times you've pressed a key on your keyboard and clicks on your mouse. Trace amounts of CPU usage (&lt;1%) and minimal memory (~30mb).
+This small module written in python tracks the amount of times you've pressed a key on your keyboard and the amount of left clicks on your mouse and displays them in your Discord RPC! 
+
+- Trace amounts of CPU usage (&lt;1%) and memory (~30mb)
+- Key contents are not logged
+- Also bundled into `.exe` for easier use
+
+# How to manually setup
+- Clone this repository into a folder
+- Install all packages in `requirements.txt` (I recommend making a virtual env first with `py -m venv env` and `./env/Scripts/activate`)
+- Run `main.py`
+
+**Only windows is supported at this time.**
