@@ -11,3 +11,6 @@ This small module written in C# tracks the amount of times you've pressed a key 
 - Install all required packages and run
 
 **Only windows is supported at this time.**
+
+# To-Do
+- Add detection for mouse clicks (I'm really trying), for now if you really want mouse click tracking, switch to the Python branch and manually run it
