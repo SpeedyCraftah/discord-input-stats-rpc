@@ -1,28 +1,32 @@
 ﻿using DiscordRPC;
 using System;
 using System.Threading.Tasks;
-using static discord_input_rpc_tracker.KeyboardTracker;
+using InputTracker;
 
 namespace discord_input_rpc_tracker
 {
     class Index
     {
+        // Compact - Read only
         static readonly bool compact = false;
 
-        static int keys_pressed = 0;
+        static long KeysPressed = 0;
+        static long LeftClicks = 0;
 
         static DateTime started_at;
 
         static DiscordRpcClient client;
 
+        static void OnLeftClick()
+        {
+            LeftClicks++;
+        }
+
         static void Main(string[] args)
         {
-            RegisterKeys(() =>
-            {
-                keys_pressed++;
-            });
+            MouseTracker.RegisterClicks(OnLeftClick);
 
-            Console.WriteLine("Key hook attached.");
+            Console.WriteLine("Key tracker thread spawned.");
 
             client = new DiscordRpcClient("793662574088290325");
 
@@ -42,7 +46,7 @@ namespace discord_input_rpc_tracker
                         {
                             Timestamps = new Timestamps(started_at),
                             Details = "Casually Tracking Mouse & Keyboard",
-                            State = $"Keys Pressed: {keys_pressed}",
+                            State = $"Left Clicks: {LeftClicks} | Keys Pressed: {KeysPressed}",
                             Assets = new Assets()
                             {
                                 LargeImageKey = "keyboardandmouse",
@@ -56,8 +60,8 @@ namespace discord_input_rpc_tracker
                         client.SetPresence(new RichPresence()
                         {
                             Timestamps = new Timestamps(started_at),
-                            // Details - Mouse Clicks
-                            State = $"Keys Pressed: {keys_pressed}",
+                            Details = $"Left Clicks: {LeftClicks}",
+                            State = $"Keys Pressed: {KeysPressed}",
                             Assets = new Assets()
                             {
                                 LargeImageKey = "keyboardandmouse",
@@ -73,6 +77,8 @@ namespace discord_input_rpc_tracker
             });
 
             Console.WriteLine("Main thread spawned.");
+
+            Console.ReadLine();
         }
     }
 }
