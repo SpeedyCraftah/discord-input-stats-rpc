@@ -3,12 +3,12 @@ using InputTracker;
 using System;
 using System.Threading;
 
-namespace discord_input_rpc_tracker
+namespace DiscordInputRPCTracker
 {
     class Index
     {
         // Compact - Read only
-        static readonly bool compact = false;
+        static readonly bool compact = true;
 
         static long KeysPressed = 0;
         static long LeftClicks = 0;
@@ -31,6 +31,7 @@ namespace discord_input_rpc_tracker
         {
             MouseTracker.RegisterClicks(OnLeftClick);
             KeyboardTracker.RegisterKeys(OnKeyPress);
+            TrayManager.HideInTray.Track();
 
             client = new DiscordRpcClient("793662574088290325");
 
@@ -38,7 +39,7 @@ namespace discord_input_rpc_tracker
 
             started_at = DateTime.Now;
 
-            Console.WriteLine("Successfully started RPC in " + (compact ? "compact" : "full") + "mode.");
+            Console.WriteLine("Successfully started RPC in " + (compact ? "compact" : "full") + " mode.");
             Console.WriteLine("To exit, simply close the command prompt window.");
 
             Thread MainThread = new Thread(StartRPCUpdates);
