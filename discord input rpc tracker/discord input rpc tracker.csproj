@@ -64,11 +64,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
     <Compile Include="src\HideInTray.cs" />
     <Compile Include="src\MouseTracker.cs" />
     <Compile Include="src\KeyboardTracker.cs" />
@@ -79,10 +74,6 @@
     <None Include="App.config" />
     <None Include="Input Tracker Key.pfx" />
     <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include=".nuget\mouse-keyboard-hook-logo.png" />
