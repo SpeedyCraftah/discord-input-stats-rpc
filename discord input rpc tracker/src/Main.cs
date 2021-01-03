@@ -32,8 +32,6 @@ namespace discord_input_rpc_tracker
             MouseTracker.RegisterClicks(OnLeftClick);
             KeyboardTracker.RegisterKeys(OnKeyPress);
 
-            Console.WriteLine("Key tracker thread spawned.");
-
             client = new DiscordRpcClient("793662574088290325");
 
             client.Initialize();

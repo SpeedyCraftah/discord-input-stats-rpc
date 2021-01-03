@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
 using System.Threading;
 
 namespace InputTracker
@@ -15,6 +16,8 @@ namespace InputTracker
 
             Thread thread = new Thread(DetectClicks);
             thread.Start();
+
+            Console.WriteLine("Mouse click tracker thread spawned.");
         }
 
         [DllImport("user32.dll")]

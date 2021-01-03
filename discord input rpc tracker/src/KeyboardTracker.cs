@@ -22,6 +22,8 @@ namespace InputTracker
 
             Thread thread = new Thread(StartHooks);
             thread.Start();
+
+            Console.WriteLine("Keyboard key press tracker thread spawned.");
         }
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
