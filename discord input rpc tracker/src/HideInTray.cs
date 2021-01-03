@@ -48,8 +48,10 @@ namespace TrayManager
 
         [DllImport("user32.dll")]
         public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+
         [DllImport("user32.dll")]
         static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+
         public static void SetConsoleWindowVisibility(bool visible)
         {
             IntPtr hWnd = FindWindow(null, Console.Title);
