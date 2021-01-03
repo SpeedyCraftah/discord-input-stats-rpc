@@ -2,6 +2,7 @@
 using System;
 using System.Threading.Tasks;
 using InputTracker;
+using System.Threading;
 
 namespace discord_input_rpc_tracker
 {
@@ -22,9 +23,15 @@ namespace discord_input_rpc_tracker
             LeftClicks++;
         }
 
-        static void Main(string[] args)
+        static void OnKeyPress()
+        {
+            KeysPressed++;
+        }
+
+        static void Main()
         {
             MouseTracker.RegisterClicks(OnLeftClick);
+            KeyboardTracker.RegisterKeys(OnKeyPress);
 
             Console.WriteLine("Key tracker thread spawned.");
 
@@ -37,48 +44,53 @@ namespace discord_input_rpc_tracker
             Console.WriteLine("Successfully started RPC in " + (compact ? "compact" : "full") + "mode.");
             Console.WriteLine("To exit, simply close the command prompt window.");
 
-            Task.Run(async () => {
-                while (true)
-                {
-                    if (compact)
-                    {
-                        client.SetPresence(new RichPresence()
-                        {
-                            Timestamps = new Timestamps(started_at),
-                            Details = "Casually Tracking Mouse & Keyboard",
-                            State = $"Left Clicks: {LeftClicks} | Keys Pressed: {KeysPressed}",
-                            Assets = new Assets()
-                            {
-                                LargeImageKey = "keyboardandmouse",
-                                LargeImageText = "stop hovering over me 😅",
-                                SmallImageKey = "cslogo",
-                                SmallImageText = "yes this was made in C#"
-                            }
-                        });
-                    } else
-                    {
-                        client.SetPresence(new RichPresence()
-                        {
-                            Timestamps = new Timestamps(started_at),
-                            Details = $"Left Clicks: {LeftClicks}",
-                            State = $"Keys Pressed: {KeysPressed}",
-                            Assets = new Assets()
-                            {
-                                LargeImageKey = "keyboardandmouse",
-                                LargeImageText = "stop hovering over me 😅",
-                                SmallImageKey = "cslogo",
-                                SmallImageText = "yes this was made in C#"
-                            }
-                        });
-                    }
+            Thread MainThread = new Thread(StartRPCUpdates);
+            MainThread.Start();
 
-                    await Task.Delay(15000);
-                }
-            });
-
-            Console.WriteLine("Main thread spawned.");
+            Console.WriteLine("Main update thread spawned.");
 
             Console.ReadLine();
+        }
+
+        static void StartRPCUpdates()
+        {
+            while (true)
+            {
+                if (compact)
+                {
+                    client.SetPresence(new RichPresence()
+                    {
+                        Timestamps = new Timestamps(started_at),
+                        Details = "Casually Tracking Mouse & Keyboard",
+                        State = $"Left Clicks: {LeftClicks} | Keys Pressed: {KeysPressed}",
+                        Assets = new Assets()
+                        {
+                            LargeImageKey = "keyboardandmouse",
+                            LargeImageText = "stop hovering over me 😅",
+                            SmallImageKey = "cslogo",
+                            SmallImageText = "yes this was made in C#"
+                        }
+                    });
+                }
+                else
+                {
+                    client.SetPresence(new RichPresence()
+                    {
+                        Timestamps = new Timestamps(started_at),
+                        Details = $"Left Clicks: {LeftClicks}",
+                        State = $"Keys Pressed: {KeysPressed}",
+                        Assets = new Assets()
+                        {
+                            LargeImageKey = "keyboardandmouse",
+                            LargeImageText = "stop hovering over me 😅",
+                            SmallImageKey = "cslogo",
+                            SmallImageText = "yes this was made in C#"
+                        }
+                    });
+                }
+
+                Thread.Sleep(15000);
+            }
         }
     }
 }
