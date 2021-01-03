@@ -11,6 +11,8 @@ namespace InputTracker
 
         internal static void RegisterClicks(ClickEventFunction OnClick)
         {
+            OnClickFunction = OnClick;
+
             Thread thread = new Thread(DetectClicks);
             thread.Start();
         }
