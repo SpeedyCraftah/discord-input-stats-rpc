@@ -1,16 +1,15 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("discord input rpc tracker")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Discord Input RPC Stats")]
+[assembly: AssemblyDescription("A tool which tracks your amount of clicks and key presses and shows them in your Discord RPC.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("discord input rpc tracker")]
-[assembly: AssemblyCopyright("Copyright ©  2020")]
+[assembly: AssemblyProduct("Discord Input RPC Stats")]
+[assembly: AssemblyCopyright("Copyright © Speedy 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
