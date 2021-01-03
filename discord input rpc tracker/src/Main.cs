@@ -1,7 +1,6 @@
 ﻿using DiscordRPC;
-using System;
-using System.Threading.Tasks;
 using InputTracker;
+using System;
 using System.Threading;
 
 namespace discord_input_rpc_tracker

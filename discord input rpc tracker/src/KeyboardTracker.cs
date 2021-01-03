@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace InputTracker
 {
@@ -10,7 +10,7 @@ namespace InputTracker
     {
         public delegate void KeyPressEventFunction();
         private static KeyPressEventFunction OnPressFunction;
-        
+
         private const int WH_KEYBOARD_LL = 13;
         private const int WM_KEYDOWN = 0x0100;
         private static LowLevelKeyboardProc _proc = HookCallback;
