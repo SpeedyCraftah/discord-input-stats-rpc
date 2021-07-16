@@ -37,7 +37,7 @@ namespace DiscordInputRPCTracker
 
             client.Initialize();
 
-            started_at = DateTime.Now;
+            started_at = DateTime.UtcNow;
 
             Console.WriteLine("Successfully started RPC in " + (compact ? "compact" : "full") + " mode.");
             Console.WriteLine("To exit, simply close the command prompt window.");
